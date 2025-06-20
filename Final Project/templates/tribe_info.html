@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ tribe_name | capitalize }} тууралуу маалымат</title>
+   
+    <style>
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* background: #fff7f7; */
+            color: #550E10;
+            padding: 30px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            text-align: center;
+            text-shadow: 1px 1px 3px #a94a4a;
+        }
+
+        .content-container {
+            display: flex;
+            gap: 40px;
+            max-width: 900px;
+            width: 100%;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .description {
+            flex: 1 1 45%; /* Текст жарымын ээлейт */
+            max-width: 45vw;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            background: #fff0f0;
+            padding: 20px 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(85, 14, 16, 0.15);
+            overflow-wrap: break-word;
+        }
+
+        .tribe-image {
+            flex: 1 1 40%;
+            max-width: 350px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(85, 14, 16, 0.25);
+            object-fit: cover;
+            height: auto;
+            max-height: 400px;
+        }
+
+        .btn {
+            margin-top: 35px;
+            background-color: #550E10;
+            color: white;
+            padding: 12px 28px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            align-self: center;
+        }
+
+        .btn:hover {
+            background-color: #7f191b;
+        }
+
+        /* Мобилге ыңгайлаштыруу */
+        @media (max-width: 768px) {
+            .content-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .description, .tribe-image {
+                max-width: 90vw;
+                flex: none;
+            }
+            .description {
+                margin-bottom: 25px;
+            }
+        }
+        .word {
+    transition: all 0.2s ease;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+    .word.active {
+    background-color: #ffcccc;
+    text-decoration: underline;
+}
+
+    </style>
+</head>
+<body>
+    <h1>{{ tribe_name | capitalize }} уруусу тууралуу</h1>
+
+    <div class="content-container">
+        <!-- <p class="description">{{ description }}</p> -->
+        <p id="text-to-read" class="description">
+    {% for word in description.split() %}
+        <span class="word">{{ word }}</span>
+    {% endfor %}
+</p>
+
+
+        <!-- Сүрөттү ушул жерге койсо болот -->
+        <!-- <img src="{{ tribe_image_url }}" alt="{{ tribe_name | capitalize }} сүрөтү" class="tribe-image" /> -->
+    </div>
+
+     <script>
+    let utterance;
+    let wordElements = document.querySelectorAll('.word');
+    let fullText = Array.from(wordElements).map(el => el.innerText).join(' ');
+    let charIndexToWordIndex = [];
+    let charCount = 0;
+
+    // Ар бир сөздүн башталыш индексин сактоо
+    wordElements.forEach((word, index) => {
+        charIndexToWordIndex.push({ index: index, start: charCount });
+        charCount += word.innerText.length + 1; // пробел да кошулат
+    });
+
+    function readText() {
+        utterance = new SpeechSynthesisUtterance(fullText);
+        utterance.lang = 'ky-KG'; // Тил
+        utterance.rate = 1; // Ылдамдык
+
+        // Ар бир сөз башталганда ишке кирет
+        utterance.onboundary = function(event) {
+            if (event.name === 'word') {
+                highlightWordByCharIndex(event.charIndex);
+            }
+        };
+
+        utterance.onend = function() {
+            removeHighlights();
+        };
+
+        // Туура үндү тандоо (эгер бар болсо)
+        const voices = window.speechSynthesis.getVoices();
+        utterance.voice = voices.find(v => v.lang.includes("ky") || v.lang.includes("ru") || v.lang.includes("tr"));
+
+        speechSynthesis.speak(utterance);
+    }
+
+    function stopReading() {
+        speechSynthesis.cancel();
+        removeHighlights();
+    }
+
+    function highlightWordByCharIndex(charIndex) {
+        removeHighlights();
+        for (let i = 0; i < charIndexToWordIndex.length; i++) {
+            const wordData = charIndexToWordIndex[i];
+            const nextWordData = charIndexToWordIndex[i + 1] || { start: Infinity };
+            if (charIndex >= wordData.start && charIndex < nextWordData.start) {
+                wordElements[wordData.index].classList.add('active');
+                break;
+            }
+        }
+    }
+
+    function removeHighlights() {
+        wordElements.forEach(el => el.classList.remove('active'));
+    }
+</script>
+
+<div style="display: flex; gap: 15px; margin-top: 25px;">
+    <button onclick="readText()" class="btn">Угуу</button>
+    <button onclick="stopReading()" class="btn">Токтотуу</button>
+</div>
+    <a href="/" class="btn">Башкы бетке кайтуу</a>
+
+ {% include 'uruu_strukturasy.html' %}
+</body>
+</html>

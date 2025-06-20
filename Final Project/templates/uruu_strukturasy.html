@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+  <meta charset="UTF-8" />
+  <title>Кыргыз уруулары дарагы</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #e9f0ff, #ffffff);
+      margin: 0;
+      padding: 40px 20px;
+      color: #333;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      font-size: 2.5rem;
+      color: #550E10;
+    }
+
+    h2 {
+      font-size: 1.2rem;
+      color: #212727;
+      margin-bottom: 40px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .column {
+      flex: 1 1 300px;
+      background: #fff;
+      padding: 30px 25px;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      min-width: 280px;
+      position: relative;
+    }
+
+    .column:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 30px rgba(0,0,0,0.15);
+    }
+
+    .title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #d35400;
+      position: relative;
+    }
+
+    .title::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 3px;
+      background: #d35400;
+      border-radius: 2px;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+      text-align: left;
+    }
+
+    li {
+      margin: 10px 0;
+      font-size: 1.05rem;
+      font-weight: 500;
+      position: relative;
+      padding-left: 20px;
+    }
+
+    li::before {
+      content: "➤";
+      position: absolute;
+      left: 0;
+      color: #3498db;
+      font-size: 0.9rem;
+    }
+
+    li ul li::before {
+      content: "➤";
+      color: #16a085;
+    }
+
+    footer {
+      margin-top: 60px;
+      font-size: 0.9rem;
+      color: #888;
+    }
+
+    @media (max-width: 768px) {
+      .title {
+        font-size: 1.3rem;
+      }
+      li {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Кыргыз элинин уруулар дарагы</h1>
+  <h2>(Санжыра боюнча үч бөлүккө бөлүнгөн)</h2>
+
+  <div class="container">
+    <!-- Сол канат -->
+    <div class="column">
+      <div class="title">Сол канат</div>
+      <ul>
+        <li>Басыз</li>
+        <li>Жетиген</li>
+        <li>Чоң багыш</li>
+        <li>Мундуз</li>
+        <li> Жайыл </li>
+           
+        <li>Каратал
+            <ul>
+                <li>Кушчу</li>
+            </ul>
+        </li>
+        <li>Каранай
+            <ul>
+                <li>Кытай</li>
+            </ul>
+        </li>
+        <li>Саруу</li>
+            </ul>
+        </li>
+       
+      </ul>
+    </div>
+
+    <!-- Оң канат -->
+    <div class="column">
+      <div class="title">Оң канат</div>
+      <ul>
+        <li>Багыш</li>
+        <li>Саяк</li>
+        <li>Карачоро</li>
+        <li>Азык</li>
+        <li>Черик</li>
+        <li>Сарыбагыш</li>
+        <li>Бугу</li>
+        <li>Солто</li>
+        <li>Жедигер</li>
+        <li>Жору</li>
+        <li>Бөрү</li>
+        <li>Баргы</li>
+        <li>Карабагыш</li>
+        <li>Сарттар</li>
+        <li>Коштамга</li>
+        <li>Жагалмайтамга</li>
+        <li>Баймоңол</li>
+        <li>Бакы</li>
+        <li>Бөгөнөк</li>
+      </ul>
+    </div>
+
+    <!-- Ичкилик -->
+    <div class="column">
+      <div class="title">Ичкилик</div>
+      <ul>
+        <li>Оргу</li>
+        <li>Жоокесек</li>
+        <li>кыпчак</li>
+        <li>Абат</li>
+        <li>Нойгут</li>
+        <li>Найман</li>
+        <li>Тейит</li>
+        <li>Канды</li>
+        <li>Бостон</li>
+        <li>Кесек</li>
+        <li>Дөөлөс</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 AI Mураскер | Нурбаян Нурбекова тарабынан жасалып чыкты
+  </footer>
+
+</body>
+</html>

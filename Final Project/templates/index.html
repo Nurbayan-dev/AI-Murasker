@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+    <meta charset="UTF-8" />
+    <title>AI Murasker</title>
+    <style>
+        body {
+            font-family: 'Tahoma';
+            background: #faf5f5;
+            color: #550E10;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        header {
+            padding: 30px 20px 10px;
+            background-color: #faf5f5;
+            /* box-shadow: 0 2px 8px rgb(85 14 16 / 0.15); */
+        }
+
+        header img {
+            width: 180px;
+            margin-bottom: 25px;
+            margin-top: 25px;
+        }
+
+        header h1 {
+            font-weight: 700;
+            font-size: 2.2rem;
+            line-height: 1.2;
+            margin: 0 0 25px;
+            color: #550E10;
+        }
+
+        form {
+            margin-bottom: 80px;
+        }
+
+        input[type="file"] {
+            border: 2px dashed #550E10;
+            padding: 12px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #fff0f0;
+            color: #550E10;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        input[type="file"]:hover {
+            background-color: #e2c8c9;
+        }
+
+        .btn {
+            background-color: #550E10;
+            color: white;
+            padding: 12px 28px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #7a171a;
+        }
+
+        /* Блоктордун жалпы стили */
+        .info-section {
+            max-width: 900px;
+            margin: 0 auto 60px;
+            background: white;
+            border-radius: 20px;
+            padding: 30px 40px;
+            box-shadow: 0 10px 20px rgb(85 14 16 / 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: default;
+        }
+
+        .info-section:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgb(85 14 16 / 0.25);
+        }
+
+        .info-section h2 {
+            color: #9b1d1f;
+            font-size: 1.8rem;
+            margin-bottom: 18px;
+            border-bottom: 2px solid #550E10;
+            padding-bottom: 8px;
+        }
+
+        .info-section p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #4a1a1b;
+            text-align: left;
+        }
+
+        /* Сайтты скроллдоодо блоктордун аралык */
+        .info-section + .info-section {
+            margin-top: 40px;
+        }
+
+        /* Медиа для мобилдер */
+        @media (max-width: 600px) {
+            .info-section {
+                padding: 20px 25px;
+            }
+            header h1 {
+                font-size: 1.6rem;
+            }
+            .info-section h2 {
+                font-size: 1.4rem;
+            }
+            .info-section p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" />
+    <h1>“AI Murasker” Акылдуу Мураскер <br/> платформасына кош келиңиз!</h1>
+
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".jpg,.jpeg,.png" required><br><br>
+        <input type="submit" class="btn" value="Сүрөт жүктөө жана аныктоо">
+    </form>
+</header>
+
+<section class="info-section" id="about-ai-murasker">
+    <h2>Негизги максаты</h2>
+    <p>
+        <strong>AI Mураскер</strong> — бул жасалма интеллект (AI) жана компьютердик көрүү (computer vision) технологиясынын негизинде иштелип чыккан уникалдуу веб-платформа. Анын негизги максаты — кыргыз элинин байыркы тарыхын, руханий мурасын жана уруулук түзүмүн заманбап технологиялар аркылуу изилдөө, сактоо жана кийинки муундарга жеткирүү болуп саналат.
+    </p>
+    <p>
+        Бул платформа сүрөттөр аркылуу кыргыз урууларынын белгилерин — мисалы, урууларга тиешелүү тамгаларды, эн белгилерди же башка салттуу белгилерди автоматтык түрдө таанып, колдонуучуга таандык уруунун тарыхы жана мүнөздөмөсү тууралуу кеңири маалымат берет. Мунун бардыгы машиналык окутуунун негизинде машыгып, кыргыз урууларын өз алдынча тааный алган моделдин жардамы менен ишке ашырылат.
+    </p>
+   
+</section>
+
+<section class="info-section" id="about-ai-murasker"> 
+    <p>
+        <strong>AI Mураскердин негизги максаттары төмөнкүлөрдү камтыйт:</strong>
+    </p>
+    <ul>
+       <p>
+        <strong>Маданий мурастарды сактоо</strong> – Платформа кыргыз урууларына тиешелүү белгилерди санариптештирип, мурастын унутулушуна жол бербейт. <br/>
+        <strong>Жаш муунга тарыхый аң-сезимди калыптандыруу</strong> – Жаштар өз уруулары тууралуу маалымат алып, улуттук иденттүүлүктү өнүктүрө алышат. <br/>
+        <strong>Технология аркылуу этно-таанымдык билим берүү</strong> – Компьютердик көрүү менен эн белгини таанып, интерактивдүү билим берүү мүмкүнчүлүгүн түзөт. <br/>
+        <strong>Кыргыз этнографиясын глобалдык деңгээлге чыгаруу</strong> – Платформа дүйнөлүк аудиторияга кыргыз маданиятын таанытууга жардам берет. <br/>
+    </p> 
+</ul>
+    <p>
+        <strong>AI Мураскер</strong> — бул өткөн менен келечекти байланыштырган санарип көпүрө. Бул платформа ата-бабалардын даңктуу мурасын унутпай, аны жаңы технологиялар менен сактап калууга багытталган инновациялык демилге.
+    </p>
+</section>
+
+<section class="info-section" id="tribes-and-sanjyra">
+    <h2>Кыргыз уруулары жана санжыра тууралуу маалымат</h2>
+    <p>
+        Кыргыз уруулары — биздин тарыхыбыздын байлыгы жана улуу мурастарыбыздын бөлүгү. Санжыра — бул уруулардын жана тукумдардын тарыхын чагылдырган эпикалык баяндоо. Ар бир уруунун өзүнүн өзгөчө салттары, каада-салттары жана тарыхый окуялары бар. Биздин платформада бул баалуу маалыматтар кеңири чагылдырылып, санарип форматта жаштарга жеткирилет.
+    </p>
+</section>
+
+<section class="info-section" id="projects-and-forums">
+    <h2>Мураскер платформасынын проектилери жана форумдары</h2>
+    <p>
+        AI Мураскер платформасынын алкагында бир катар долбоорлор ишке ашырылды, анын ичинде маданий мурастарды сактоо боюнча мобилдик колдонмолор, санариптик архивдер жана билим берүү программалары. Ошондой эле, мурастарды жайылтуу жана сактоо максатында бир нече форумдар жана семинарлар уюштурулуп, катышуучулар маданият, технология жана билим берүү тармагында тажрыйба алмашты.
+    </p>
+</section>
+{% include 'footer.html' %}
+
+
+</body>
+</html>

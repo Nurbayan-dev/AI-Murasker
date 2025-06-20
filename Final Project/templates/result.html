@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+    <meta charset="UTF-8">
+    <title>Жыйынтык</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            color: #550E10;
+            font-family: sans-serif;
+            background-color: #fff0f0;
+        }
+        img {
+            width: 300px;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(85, 14, 16, 0.2);
+        }
+        .btn {
+            background-color: #550E10;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border: none;
+            border-radius: 8px;
+            margin: 15px 10px;
+            display: inline-block;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #7a181a;
+        }
+        footer {
+            margin-top: 40px;
+            padding: 15px 0;
+            border-top: 2px solid #f3dcdc;
+            color: #550E10;
+            font-size: 14px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <h1>Бул уруунун аты:</h1>
+    <h2>{{ result }}</h2>
+    <img src="{{ url_for('static', filename='uploads/' + filename) }}" alt="Уруунун сүрөтү">
+    <br>
+    <a href="{{ url_for('tribe_info_page', tribe_name=result) }}" class="btn">Кененирээк маалымат</a>
+    <a href="/" class="btn">Башына кайтуу</a>
+
+</body>
+</html>
